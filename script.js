@@ -232,7 +232,8 @@ function checkAnswer() {
 
 // Final score dikhane ka function
 function showResult() {
-  showDiv.innerHTML = `<h2>Your Score: ${score} / ${questions.length}</h2>`;
+  showDiv.innerHTML = `<h2>Result:<h2><h3>Total Ques: ${questions.length} 
+  & Correct Ans:${score} </h3>`;
   // Submit button chup karo
   submitBtn.style.display = 'none';
 }
