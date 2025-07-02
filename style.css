@@ -1,0 +1,125 @@
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body - clean background */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #333;
+}
+
+/* Header with Logout button */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+#logout {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#logout:hover {
+  background-color: #e0e0e0;
+}
+
+/* Main container for quiz content */
+.container {
+  background-color: #fff;
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Buttons */
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  min-width: 150px;
+}
+
+/* Specific button styles */
+#startBtn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#startBtn:hover {
+  background-color: #0069d9;
+}
+
+#submitBtn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+#submitBtn:hover {
+  background-color: #218838;
+}
+
+/* Quiz box styling */
+.quiz-box {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+/* Question heading */
+.quiz-box h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Options styling */
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: #f1f1f1;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
