@@ -8,7 +8,7 @@ if (quizeStart) {
    if(savelogin==='true'){
       window.location.href="quizstart.html"
     }
- else{   window.location.href = "login.html";
+ else{   window.location.href = "index.html";
     console.log("start your  quizes");
     console.log(all)
     }
@@ -83,7 +83,7 @@ if (usersignup) {
 
     usersignup.style.display = "none";
 
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   });
 }
 
@@ -93,7 +93,7 @@ logout.addEventListener("click", function () {
   if (logout) {
     // const showDiv = document.getElementById("show");
     alert("Logout Your Account");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 
     localStorage.removeItem("login");
   }
@@ -232,8 +232,7 @@ function checkAnswer() {
 
 // Final score dikhane ka function
 function showResult() {
-  showDiv.innerHTML = `<h2>Results: </h2>
-  <h3>Total Questions: ${questions.length}</h3>             <h3>Correct Ans: ${score} </h3>`;
+  showDiv.innerHTML = `<h2>Your Score: ${score} / ${questions.length}</h2>`;
   // Submit button chup karo
   submitBtn.style.display = 'none';
 }

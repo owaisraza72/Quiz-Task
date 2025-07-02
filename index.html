@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <style>
+ /* Reset and box sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      background-color: #eff0f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Form container styling */
+    #userlogin {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      animation: animate__backInUp 1s;
+    }
+
+    /* Heading */
+    #userlogin h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    /* Inputs styling */
+#userlogin input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+#userlogin input:focus {
+      border-color: #2abbe8;
+    }
+
+
+span{}
+    /* Button styling */
+.btn2 {
+      width: 100%;
+      padding: 15px;
+      background-color: #2abbe8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+.btn2:hover {
+      background-color: #229fcf;
+    }    </style>
+  </head>
+
+  <body>
+
+
+
+
+
+
+    
+
+
+    <form id="userlogin" class="animate__animated animate__backInUp">
+      <h1>Login</h1>
+
+      <input
+        type="email"
+        id="loginemail"
+        placeholder="Enter Your Phone & Email"
+      />
+
+      <input
+        type="password"
+        id="loginpassword"
+        placeholder="Enter Your password"
+      />
+
+      <button type="submit" class="btn2">Login</button>
+      <span>Don't have any Account <a href="./signup.html">Signup</a></span>
+    </form>
+
+
+
+
+
+
+    
+    
+    
+
+    
+    
+    <script src="./script.js">
+
+ 
+
+    
+    </script>
+  </body>
+</html>
