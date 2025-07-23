@@ -1,135 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-    <style>
- /* Reset and box sizing */
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Login & Signup</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Body styling */
     body {
-      background-color: #eff0f5;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
 
-    /* Form container styling */
-    #userlogin {
-      background-color: #fff;
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+    form {
+      background-color: #ffffff;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      max-width: 350px;
       width: 100%;
-      animation: animate__backInUp 1s;
+      animation: fadeIn 0.6s ease-in-out;
     }
 
-    /* Heading */
-    #userlogin h1 {
+    form h1 {
       text-align: center;
       margin-bottom: 20px;
-      color: #333;
+      color: #00796b;
       font-size: 24px;
     }
 
-    /* Inputs styling */
-#userlogin input {
+    form input {
       width: 100%;
       padding: 12px 15px;
-      margin-bottom: 16px;
-      border-radius: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
+      font-size: 15px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.3s;
     }
 
-#userlogin input:focus {
-      border-color: #2abbe8;
+    form input:focus {
+      border-color: #26c6da;
     }
 
-
-span{}
-    /* Button styling */
-.btn2 {
+    form button {
       width: 100%;
-      padding: 15px;
-      background-color: #2abbe8;
+      padding: 12px;
+      background-color: #26c6da;
       color: white;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
       font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
-.btn2:hover {
-      background-color: #229fcf;
-    }    </style>
-  </head>
+    form button:hover {
+      background-color: #0097a7;
+    }
 
-  <body>
+    p {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+    }
 
+    span {
+      font-weight: bold;
+      color: #26c6da;
+      cursor: pointer;
+    }
 
+    span:hover {
+      text-decoration: underline;
+    }
 
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    .back {
+      width: 25%;
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #26c6da;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-    
+    .back:hover {
+      background-color: #0097a7;
+    }
+  </style>
+</head>
 
+<body>
+  <!-- ✅ Signup Form (Initially Hidden) -->
+  <form id="usersignup" style="display: none">
+    <h1>Sign Up</h1>
+    <input type="text" id="name" placeholder="Enter Your Full Name" />
+    <input type="email" id="email" placeholder="Enter Your Email" />
+    <input type="password" id="password" placeholder="Enter Password" />
+    <button id="signbtn">Sign Up</button>
+    <p>Already have an Account? <span class="toggleLogin">Login</span></p>
+  </form>
 
-    <form id="userlogin" class="animate__animated animate__backInUp">
-      <h1>Login</h1>
+  <!-- ✅ Login Form -->
+  <form id="userlogin">
+    <h1>Login</h1>
+    <input type="email" id="loginemail" placeholder="Enter Your Email" />
+    <input type="password" id="loginpassword" placeholder="Enter Your Password" />
+    <button id="loginbtn">Login</button>
+    <p>Don't have an Account? <span class="toggleSignup">Sign Up</span></p>
+  </form>
+  <!-- <button class="back" onclick="back()">Back to Home</button> -->
 
-      <input
-        type="email"
-        id="loginemail"
-        placeholder="Enter Your Phone & Email"
-      />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./script.js" type="module">
+  </script>
+</body>
 
-      <input
-        type="password"
-        id="loginpassword"
-        placeholder="Enter Your password"
-      />
-
-      <button type="submit" class="btn2">Login</button>
-      <span>Don't have any Account <a href="./signup.html">Signup</a></span>
-    </form>
-
-
-
-
-
-
-    
-    
-    
-
-    
-    
-    <script src="./script.js">
-
- 
-
-    
-    </script>
-  </body>
 </html>
