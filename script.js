@@ -40,7 +40,25 @@ if (signupAcc) {
       Swal.fire("Error", error.message, "error");
       return;
     }
+    const { error: insertError } = await client.from("user_quizes").insert({
+      id: data.user.id,
+      full_name: name.value,
+      email: useremail.value,
+    });
 
+    if (insertError) {
+      Swal.fire("Error", insertError.message, "error");
+      return;
+    }
+
+    Swal.fire(
+      "Success! Signed up ",
+      "You have signed up successfully! Please check your Email"
+    );
+
+    name.value = "";
+    useremail.value = "";
+    userpassword.value = "";
     // After everything
     hideLoader(); //  Hide loader
   });
@@ -248,9 +266,9 @@ function loadQuestion() {
       <div id="timer">⏱️ ${timeLeft} sec</div>
     </div>
   `;
-  showDiv.innerHTML = show; // Naya question dikhao
-  submitBtn.style.display = "inline-block"; // Submit button dikhao
-  startTimer(); // Timer shuru karo
+  showDiv.innerHTML = show; // Naya question
+  submitBtn.style.display = "inline-block"; // Submit button
+  startTimer(); // Timer shuru
 }
 
 // Timer on
@@ -259,18 +277,18 @@ function startTimer() {
   document.getElementById("timer").innerText = `⏱️ ${timeLeft} sec`;
   // Har second ke liye
   timerInterval = setInterval(() => {
-    timeLeft--; // 1 second kam karo
-    document.getElementById("timer").innerText = `⏱️ ${timeLeft} sec`; // Dikhao
+    timeLeft--; // 1 second kam
+    document.getElementById("timer").innerText = `⏱️ ${timeLeft} sec`;
     if (timeLeft <= 0) {
-      clearInterval(timerInterval); // Timer band karo
-      checkAnswer(); // Time khatam hone ke baad answer check karo
+      clearInterval(timerInterval); // Timer band
+      checkAnswer(); // Time khatam hone ke baad answer check kara
     }
   }, 1000);
 }
 
 // Answer check karne ka function
 function checkAnswer() {
-  clearInterval(timerInterval); // Timer band karo
+  clearInterval(timerInterval); // Timer band kara
   const selectedRadio = document.querySelector('input[name="answer"]:checked'); // Jo answer select hai
   const userAnswer = selectedRadio ? selectedRadio.value : null; // Agar answer hai to uski value
   const correctAnswer = questions[currentQuestionIndex].answer; // Sahi answer
@@ -361,7 +379,6 @@ async function showResult() {
     // ✅ Hide the submit button
     submitBtn.style.display = "none";
     hideLoader();
-
   } catch (err) {
     console.error("Unexpected error:", err.message);
     hideLoader();
