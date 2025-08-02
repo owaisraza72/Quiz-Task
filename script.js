@@ -23,74 +23,68 @@ const logoutBtn = document.getElementById("logout");
 if (signupAcc) {
   signupAcc.addEventListener("click", async (e) => {
     e.preventDefault();
-
-    // Field Validation
     if (!name.value || !useremail.value || !userpassword.value) {
       Swal.fire("Oops!", "Please fill in all fields", "warning");
       return;
     }
 
-    // Supabase Auth SignUp
+    showLoader(); //  Show loader
+
     const { data, error } = await client.auth.signUp({
       email: useremail.value,
       password: userpassword.value,
     });
 
     if (error) {
+      hideLoader();
       Swal.fire("Error", error.message, "error");
       return;
     }
 
-    // Optional: Insert Name into user_information Table
-    const { error: insertError } = await client.from("user_quizes").insert({
-      id: data.user.id,
-      full_name: name.value,
-      email: useremail.value,
-    });
-
-    if (insertError) {
-      Swal.fire("Error", insertError.message, "error");
-      return;
-    }
-
-    Swal.fire("Success!", "You have signed up successfully!", "success");
-
-    // Clear Fields
-    name.value = "";
-    useremail.value = "";
-    userpassword.value = "";
-
-    // Switch to Login Form
-    toggleLogin();
+    // After everything
+    hideLoader(); //  Hide loader
   });
 }
-
 // ======================================= Login Handler ======================================================================
 if (loginAcc) {
   loginAcc.addEventListener("click", async (e) => {
     e.preventDefault();
+    showLoader();
 
     const { data, error } = await client.auth.signInWithPassword({
       email: loginemail.value,
       password: loginpassword.value,
     });
 
+    hideLoader();
     if (error) {
       Swal.fire("Error", error.message, "error");
       return;
-    } else {
-      Swal.fire("Login", "Login successful!", "success");
-      window.location.href = "quiz_app.html";
     }
+
+    Swal.fire("Login", "Login successful!", "success");
+    window.location.href = "quiz_app.html";
   });
+}
+// ======================================= loader Handle  =====================================================================
+
+function showLoader() {
+  document.getElementById("loader").style.display = "flex";
+}
+
+function hideLoader() {
+  document.getElementById("loader").style.display = "none";
 }
 
 // ======================================= Logout Handler =====================================================================
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
+    showLoader();
+
     const { error } = await client.auth.signOut();
 
+    hideLoader();
     if (error) {
       Swal.fire("Error", error.message, "error");
     } else {
@@ -136,14 +130,12 @@ if (currentPage === "quiz_app.html" || currentPage === "index.html") {
 // add to quizes from quizestrt file strt
 const questions = [
   {
-    question:
-      "JavaScript mein variable declare karne ke liye konsa keyword use hota hai?",
-    options: ["var", "let", "const", "sabhi"],
-    answer: "sabhi",
+    question: "Which keyword is used to declare a variable in JavaScript?",
+    options: ["var", "let", "const", "all of these"],
+    answer: "all of these",
   },
   {
-    question:
-      "JavaScript mein function ko call karne ke liye kis syntax ka istemal hota hai?",
+    question: "What is the correct syntax to call a function in JavaScript?",
     options: [
       "functionName()",
       "call(functionName)",
@@ -153,64 +145,69 @@ const questions = [
     answer: "functionName()",
   },
   {
-    question: "JavaScript mein '==' operator kya karta hai?",
+    question: "What does the '==' operator do in JavaScript?",
     options: ["Strict equality", "Loose equality", "Assignment", "Comparison"],
     answer: "Loose equality",
   },
   {
-    question: "JavaScript mein array ko kis symbol se define karte hain?",
+    question: "Which symbol is used to define an array in JavaScript?",
     options: ["{}", "[]", "()", "<>"],
     answer: "[]",
   },
   {
-    question: "JavaScript mein 'null' ka matlab kya hota hai?",
+    question: "What does 'null' mean in JavaScript?",
     options: ["Undefined value", "Null value", "Empty string", "False"],
     answer: "Null value",
   },
   {
-    question: "JavaScript mein 'if' statement kis liye use hoti hai?",
+    question: "What is the purpose of the 'if' statement in JavaScript?",
     options: [
-      "Loop chalane ke liye",
-      "Condition check karne ke liye",
-      "Function define karne ke liye",
-      "Variable declare karne ke liye",
+      "To run a loop",
+      "To check a condition",
+      "To define a function",
+      "To declare a variable",
     ],
-    answer: "Condition check karne ke liye",
+    answer: "To check a condition",
   },
   {
-    question: "JavaScript mein 'for' loop kis liye use hota hai?",
+    question: "What is the purpose of a 'for' loop in JavaScript?",
     options: [
-      "Repeat code",
-      "Define function",
-      "Declare variable",
-      "Create object",
+      "To repeat code",
+      "To define a function",
+      "To declare a variable",
+      "To create an object",
     ],
-    answer: "Repeat code",
+    answer: "To repeat code",
   },
   {
-    question: "JavaScript mein 'console.log()' ka kya kaam hai?",
+    question: "What does 'console.log()' do in JavaScript?",
     options: [
-      "Output dikhana",
-      "Error throw karna",
-      "Variable define karna",
-      "Function banana",
+      "Displays output",
+      "Throws an error",
+      "Defines a variable",
+      "Creates a function",
     ],
-    answer: "Output dikhana",
+    answer: "Displays output",
   },
   {
-    question: "JavaScript mein 'typeof' operator kya karta hai?",
-    options: ["Type check", "Type cast", "Type convert", "Type delete"],
-    answer: "Type check",
+    question: "What does the 'typeof' operator do in JavaScript?",
+    options: [
+      "Checks data type",
+      "Type casting",
+      "Type conversion",
+      "Deletes type",
+    ],
+    answer: "Checks data type",
   },
   {
-    question: "JavaScript mein 'return' statement ka kya role hota hai?",
+    question: "What is the role of the 'return' statement in JavaScript?",
     options: [
-      "Function se value return karna",
-      "Code ko stop karna",
-      "Variable declare karna",
-      "Loop ko break karna",
+      "To return a value from a function",
+      "To stop the code",
+      "To declare a variable",
+      "To break a loop",
     ],
-    answer: "Function se value return karna",
+    answer: "To return a value from a function",
   },
 ];
 
@@ -289,6 +286,7 @@ function checkAnswer() {
 }
 
 async function showResult() {
+  showLoader();
   //  Get current user
   const {
     data: { user },
@@ -362,8 +360,11 @@ async function showResult() {
 
     // ✅ Hide the submit button
     submitBtn.style.display = "none";
+    hideLoader();
+
   } catch (err) {
     console.error("Unexpected error:", err.message);
+    hideLoader();
   }
 }
 
